@@ -99,6 +99,7 @@
       "command.mcp-reaper",
       "command.noodle",
       "command.ollama",
+      "command.opencomms",
       "command.probe",
       "command.remote.essh",
       "command.repo2nb",
