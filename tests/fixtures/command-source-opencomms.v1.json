@@ -1964,7 +1964,7 @@
         "command.opencomms"
       ],
       "disabled_permissions": [],
-      "expected_action": "block",
+      "expected_action": "review",
       "rule_id": "command.opencomms.doctor-fix",
       "expected_effective_segments": []
     },
@@ -2172,9 +2172,55 @@
       "command": "opencomms version; rm -rf ./scratch",
       "enabled_extensions": [],
       "disabled_permissions": [],
-      "expected_action": "block",
+      "expected_action": "review",
       "rule_id": "command.opencomms.doctor-fix",
       "expected_effective_segments": []
+    },
+    {
+      "id": "independent-delete-baseline",
+      "command": "rm -rf ./scratch",
+      "enabled_extensions": [],
+      "disabled_permissions": [],
+      "expected_action": "review",
+      "rule_id": "command.filesystem.recursive-delete",
+      "expected_effective_segments": [
+        0
+      ]
+    },
+    {
+      "id": "compound-version-independent-delete-filesystem",
+      "command": "opencomms version; rm -rf ./scratch",
+      "enabled_extensions": [
+        "command.opencomms"
+      ],
+      "disabled_permissions": [],
+      "expected_action": "review",
+      "rule_id": "command.filesystem.recursive-delete",
+      "expected_effective_segments": [
+        1
+      ]
+    },
+    {
+      "id": "compound-version-independent-delete-filesystem-inactive",
+      "command": "opencomms version; rm -rf ./scratch",
+      "enabled_extensions": [],
+      "disabled_permissions": [],
+      "expected_action": "review",
+      "rule_id": "command.filesystem.recursive-delete",
+      "expected_effective_segments": [
+        1
+      ]
+    },
+    {
+      "id": "compound-check-independent-root-delete-inactive",
+      "command": "opencomms update --check; rm -rf /",
+      "enabled_extensions": [],
+      "disabled_permissions": [],
+      "expected_action": "block",
+      "rule_id": "command.filesystem.recursive-delete",
+      "expected_effective_segments": [
+        1
+      ]
     },
     {
       "id": "update-path-override-inactive",
